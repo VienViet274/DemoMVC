@@ -1,0 +1,26 @@
+﻿
+@model Company
+<h1>Edit company</h1>
+<form method="post">
+	<input asp-for="ID" hidden />
+	<label>Please insert Name </label><br />
+	<input asp-for="Name"  /><br />
+	<span asp-validation-for="Name"></span><br />
+	<label>Please insert street address</label><br />
+	<input asp-for="StreetAddress"  /><br />
+	<span asp-validation-for="StreetAddress"></span>
+	<label>Please insert State</label><br />
+	<input asp-for="State" /><br />
+	<span asp-validation-for="State"></span>
+	<label>Please insert City</label><br />
+	<input asp-for="City" /><br />
+	<span asp-validation-for="City"></span>
+	<label>Please insert postal code</label><br />
+	<input asp-for="PostalCode" /><br />
+	<span asp-validation-for="PostalCode"></span>
+	<label>Please insert phone number</label><br />
+	<input asp-for="PhoneNumber"  / ><br />
+	<span asp-validation-for="PhoneNumber"></span>
+	<input type="submit" value="Okay"/>
+	<a asp-controller="Company" asp-action="MainPage">Back to list</a>
+</form>

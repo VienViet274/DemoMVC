@@ -1,0 +1,14 @@
+﻿
+@model Category
+<h1>Create New Category</h1>
+<form method="post">
+	<input asp-for="ID" hidden />
+	<label>Please insert Name Student</label><br />
+	<input asp-for="Name"  /><br />
+	<span asp-validation-for="Name"></span><br />
+	<label>Please insert Year Born</label><br />
+	<input asp-for="NamSinh"  /><br />
+	<span asp-validation-for="NamSinh"></span>
+	<input type="submit" value="Okay"/>
+	<a asp-controller="Category" asp-action="MainPage">Back to list</a>
+</form>

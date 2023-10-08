@@ -1,0 +1,35 @@
+﻿@model List<Category>
+@if (TempData["success"] != null)
+{
+	<h2>@TempData["success"]</h2>
+}
+
+<p>Search with name</p>
+<form method="post">
+	<input type="text" name="TimKiem" />
+	<input type="submit" value="Search" />
+</form>
+
+<h1>Category Table</h1>
+<div>
+	<a asp-controller="Category" asp-action="Create">Create New Category</a>
+</div>
+	<table class="table table-bordered table-striped">
+	<tr>
+		<th>student ID</th>
+		<th>Name</th>
+		<th>YearBorn</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach(var a in Model)
+	{
+		<tr>
+			<td>@a.ID</td>
+			<td>@a.Name</td>
+			<td>@a.NamSinh</td>
+			<td><a asp-controller="Category" asp-action="Edit" asp-route-idd="@a.ID" >Edit</a></td>
+			<td><a asp-controller="Category" asp-action="Delete" asp-route-idd="@a.ID" >Delete</a></td>
+		</tr>
+	}
+</table>

@@ -1,0 +1,41 @@
+﻿@model Company
+@if (TempData["error"] != null)
+{
+	<h2>@TempData["error"]</h2>
+}
+<h1>Create New Company</h1>
+
+<form method="post">
+	<div asp-validation-summary="All"></div>
+
+
+	<label>Please insert Name </label><br />
+	<input asp-for="Name" /><br />
+	<span asp-validation-for="Name"></span>
+
+	<label>Please insert Street Address</label><br />
+	<input asp-for="StreetAddress" /><br />
+	<span asp-validation-for="StreetAddress"></span>
+
+	<label>Please insert City</label><br />
+	<input asp-for="City" /><br />
+	<span asp-validation-for="City"></span>
+
+	<label>Please insert State</label><br />
+	<input asp-for="State" /><br />
+	<span asp-validation-for="State"></span>
+
+	<label>Please insert Postal Code</label><br />
+	<input asp-for="PostalCode" /><br />
+	<span asp-validation-for="PostalCode"></span>
+
+	<label>Please insert Phone Number</label><br />
+	<input asp-for="PhoneNumber" /><br />
+	<span asp-validation-for="PhoneNumber"></span>
+
+
+
+
+	<input type="submit" value="Okay" />
+	<a asp-controller="Company" asp-action="MainPage">Back to list</a>
+</form>

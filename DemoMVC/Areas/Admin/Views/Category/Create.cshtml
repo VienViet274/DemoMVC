@@ -1,0 +1,18 @@
+﻿@model Category
+@if (TempData["error"] != null)
+{
+	<h2>@TempData["error"]</h2>
+}
+<h1>Create New Category</h1>
+
+<form method="post">
+	 <div asp-validation-summary="All"></div>
+	<label>Please insert Name Student</label><br />
+	<input asp-for="Name"  /><br />
+	<span asp-validation-for="Name"></span><br />
+	<label>Please insert Year Born</label><br />
+	<input asp-for="NamSinh"  /><br />
+	<span asp-validation-for="NamSinh"></span>
+	<input type="submit" value="Okay"/>
+	<a asp-controller="Category" asp-action="MainPage">Back to list</a>
+</form>

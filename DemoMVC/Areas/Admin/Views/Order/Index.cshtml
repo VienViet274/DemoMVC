@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OrderHeader>
+@if (TempData["success"] != null)
+{
+    <p>@TempData["success"]</p>
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Order Header List</h2>
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="inprocess"><li class="list-group-item">In Process</li></a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending"><li class="list-group-item">Payment Pending</li></a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed"><li class="list-group-item">Completed</li></a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="approved"><li class="list-group-item">Approved</li></a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="all"><li class="list-group-item">All</li></a>
+            </ul>
+        </div>
+    </div>
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Details</th>
+        </tr>
+        @foreach(var a in Model)
+        {
+            <tr>
+                <th>@a.ID</th>
+                <th>@a.Name</th>
+                <th>@a.PhoneNumber</th>
+                <th>@a.User.Email</th>
+                <th>@a.OrderStatus</th>
+                <th>@a.OrderTotal</th>
+                <th><a asp-action="OrderDetail" asp-route-idd="@a.ID"><i class="bi bi-clipboard2-plus"></i></a></th>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>
+
