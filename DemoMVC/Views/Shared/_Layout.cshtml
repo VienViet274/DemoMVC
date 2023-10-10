@@ -34,6 +34,7 @@
                             <a class="btn btn-primary" asp-area="Admin" asp-controller="Order" asp-action="Index">Order Management</a>
                         </li>
                         
+                        
                        
                         @if (User.IsInRole(SD.Role_User_Admin))
                         {
@@ -45,6 +46,7 @@
                                     <li><a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="MainPage">Category</a></li>
                                     <li><a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="MainPage">Product</a></li>
                                     <li><a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="MainPage">Company</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a></li>
                                     
                                     <li><hr class="dropdown-divider"></li>
                                     

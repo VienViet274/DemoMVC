@@ -21,6 +21,21 @@ namespace DemoMVC.Areas.Admin.Controllers
             ds=_unitOfWork.CompanyRepository.GetAll(null,null).ToList();
             return View(ds);
         }
+        [HttpPost]
+        public IActionResult MainPage(string TimKiem)
+        {
+            IEnumerable<Company>ds=new List<Company>();
+            if (string.IsNullOrEmpty(TimKiem))
+            {
+                ds = _unitOfWork.CompanyRepository.GetAll(null, null).ToList();
+
+            }
+            else
+            {
+                ds = _unitOfWork.CompanyRepository.GetAll(x => x.Name.Contains(TimKiem), null);
+			}
+            return View(ds);
+		}
         public IActionResult Create()
         {
             return View();

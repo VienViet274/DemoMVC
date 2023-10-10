@@ -1,0 +1,45 @@
+﻿@model List<ApplicationUser>
+@if (TempData["success"] != null)
+{
+		<h2>@TempData["success"]</h2>
+}
+
+<p>Search with name</p>
+<form method="post">
+	<input type="text" name="TimKiem" />
+	<input type="submit" value="Search" />
+</form>
+
+<h1>Company Table</h1>
+<div>
+	<a asp-controller="Company" asp-action="Create">Create New Company</a>
+</div>
+	<table class="table table-bordered table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Phone number</th>
+		<th>Company</th>
+		<th>Role</th>
+		
+	</tr>
+	@foreach (var a in Model)
+	{
+			<tr>
+				<td>@a.Name</td>
+				<td>@a.Email</td>
+				<td>@a.PhoneNumber</td>
+			@if (a.CompanyID == null)
+			{
+				<td></td>
+			}
+			else
+			{
+				<td>@a.CompanyKey.Name</td>
+			}
+			<td>@a.UserRole</td>
+			
+				
+			</tr>
+	}
+</table>

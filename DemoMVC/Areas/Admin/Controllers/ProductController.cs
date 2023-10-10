@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 
+
 namespace DemoMVC.Areas.Admin.Controllers
 {
 	[Area("Admin")]
@@ -74,8 +75,9 @@ namespace DemoMVC.Areas.Admin.Controllers
 				{
 					
 					string FileImageName = Guid.NewGuid().ToString() + Path.GetExtension(linkHinh.FileName);
-					string ProductPath = Path.Combine(rootPath, "Images\\Products");
-					var fileLuu=new FileStream(Path.Combine(ProductPath,FileImageName), FileMode.Create);
+					string ProductPath = @"images\products";
+                    string finalPath= Path.Combine(rootPath, ProductPath);
+                    var fileLuu=new FileStream(Path.Combine(finalPath,FileImageName), FileMode.Create);
 					linkHinh.CopyTo(fileLuu);
 					fileLuu.Close();
 					sp.products.ImageURl = FileImageName;
@@ -135,6 +137,11 @@ namespace DemoMVC.Areas.Admin.Controllers
 					fileLuuHinh.Close();
 					sp.products.ImageURl = ProductImage;
 				}
+				else
+				{
+					sp.products.ImageURl = null;
+
+                }
 				_unitofwork.ProductRepository.Update(sp.products);
 				_unitofwork.ProductRepository.Save();
 				return RedirectToAction("MainPage");

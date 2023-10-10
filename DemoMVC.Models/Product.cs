@@ -32,7 +32,7 @@ namespace DemoMVC.Models
 		public int Price100 { get; set; }
 		[ValidateNever]
 		
-		public string ImageURl { get; set; }
+		public string? ImageURl { get; set; }
 		[ValidateNever]
 		public int CategoryID { get; set; }
 		[ForeignKey(nameof(CategoryID))]

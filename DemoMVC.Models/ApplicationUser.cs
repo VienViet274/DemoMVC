@@ -23,7 +23,9 @@ namespace DemoMVC.Models
         public int? CompanyID { get; set; }
 		[ForeignKey(nameof(CompanyID))]
 		[ValidateNever]
-		public Company CompanyKey { get; set; }
+		public Company? CompanyKey { get; set; }
+        [NotMapped]
+        public string UserRole { get; set; }
         
     }
 }
