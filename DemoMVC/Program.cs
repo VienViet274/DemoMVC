@@ -22,6 +22,7 @@ builder.Services.AddScoped<IDBInitializer,DBInitializer>();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 //builder.Services.AddAuthentication().AddFacebook(options => { options.AppId = "299491202838203"; options.AppSecret = "e8de09ccefe83896900448eb75734963"; });
 builder.Services.AddSession(options =>

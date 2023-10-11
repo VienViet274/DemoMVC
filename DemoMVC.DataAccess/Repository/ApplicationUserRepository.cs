@@ -17,5 +17,15 @@ namespace DemoMVC.DataAccess.Repository
         {
             _ApplicationUserRepository = ApplicationUserRepository;
         }
-    }
+
+		public void Save()
+		{
+			_ApplicationUserRepository.SaveChanges();
+		}
+
+		public void Update(ApplicationUser applicationUser)
+		{
+			_ApplicationUserRepository.Update(applicationUser);
+		}
+	}
 }

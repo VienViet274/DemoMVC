@@ -22,6 +22,7 @@ namespace DemoMVC.DataAccess.Repository
 			_db.Products.Include(u => u.Category);
 			_db.ShoppingCarts.Include(u => u.Product).Include(u=>u.User);
 			_db.OrderHeaders.Include(u => u.User);
+			_db.ApplicationUser.Include(u => u.CompanyKey);
 			
 			
 		}

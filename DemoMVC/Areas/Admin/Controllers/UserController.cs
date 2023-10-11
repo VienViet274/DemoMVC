@@ -4,6 +4,8 @@ using DemoMVC.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using DemoMVC.DataAccess.Repository;
+using DemoMVC.DataAccess.Repository.IRepository;
 
 namespace DemoMVC.Areas.Admin.Controllers
 {
@@ -11,16 +13,16 @@ namespace DemoMVC.Areas.Admin.Controllers
     [Authorize(Roles =SD.Role_User_Admin)]
     public class UserController : Controller
     {
-        private DataContext _context;
+        private DataContext _data;
         public UserController(DataContext context) {
-            _context= context;
+            _data= context;
         }
 
         public IActionResult Index()
         {
-            List<ApplicationUser> ds=_context.ApplicationUser.Include("CompanyKey").ToList();
-            var UserRoles=_context.UserRoles.ToList();
-            var Roles=_context.Roles.ToList();
+            List<ApplicationUser> ds=_data.ApplicationUser.Include("CompanyKey").ToList();
+            var UserRoles=_data.UserRoles.ToList();
+            var Roles=_data.Roles.ToList();
             
             foreach(var user in ds)
             {
@@ -61,14 +63,15 @@ namespace DemoMVC.Areas.Admin.Controllers
         {
             if (string.IsNullOrEmpty(TimKiem))
             {
-				IEnumerable<ApplicationUser> ds = _context.ApplicationUser.Include("CompanyKey").ToList();
+				IEnumerable<ApplicationUser> ds = _data.ApplicationUser.ToList();
 				return View(ds);
 			}
             else
             {
-                IEnumerable<ApplicationUser>ds =_context.ApplicationUser.Where(x=>x.UserName.Contains(TimKiem)||x.Email.Contains(TimKiem)||x.Name.Contains(TimKiem)).Include(x=>x.CompanyKey).ToList();
-				var UserRoles = _context.UserRoles.ToList();
-				var Roles = _context.Roles.ToList();
+				 IEnumerable<ApplicationUser>ds =_data.ApplicationUser.Where(x=>x.UserName.Contains(TimKiem)||x.Email.Contains(TimKiem)||x.Name.Contains(TimKiem)).Include(x=>x.CompanyKey).ToList();
+				//IEnumerable<ApplicationUser> ds = _data.GetAll(x => x.UserName.Contains(TimKiem) || x.Email.Contains(TimKiem) || x.Name.Contains(TimKiem),"CompanyKey").ToList();
+				var UserRoles = _data.UserRoles.ToList();
+				var Roles = _data.Roles.ToList();
 
 				foreach (var user in ds)
 				{
@@ -92,5 +95,58 @@ namespace DemoMVC.Areas.Admin.Controllers
 				return View(ds);
             }
         }
-    }
+        public IActionResult Unlock(string idd)
+        {
+            if(string.IsNullOrEmpty(idd))
+            {
+                return NotFound();
+            }
+            else
+            {
+				var user = _data.ApplicationUser.Where(x => x.Id == idd).FirstOrDefault();
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    if (user.LockoutEnd != null)
+                    {
+                        user.LockoutEnd = null;
+                        _data.SaveChanges();
+						TempData["success"] = "Unlocked user successfully ";
+					}
+                    return RedirectToAction(nameof(Index));
+                }
+			}
+            
+
+        }
+		public IActionResult Lock(string idd)
+        {
+			if (string.IsNullOrEmpty(idd))
+			{
+				return NotFound();
+			}
+			else
+			{
+				var user = _data.ApplicationUser.Where(x => x.Id == idd).FirstOrDefault();
+				if (user == null)
+				{
+					return NotFound();
+				}
+				else
+				{
+					if (user.LockoutEnd == null)
+					{
+						user.LockoutEnd = DateTime.Now.AddYears(1000);
+						_data.SaveChanges();
+                        TempData["success"] = "Locked user successfully ";
+					}
+					return RedirectToAction(nameof(Index));
+				}
+			}
+		}
+
+	}
 }

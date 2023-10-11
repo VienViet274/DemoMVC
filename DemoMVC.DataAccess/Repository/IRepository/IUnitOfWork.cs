@@ -15,6 +15,7 @@ namespace DemoMVC.DataAccess.Repository.IRepository
 		IApplicationUserRepository ApplicationUserRepository { get; }
 		IOrderHeaderRepository OrderHeaderRepository { get; }
 		IOrderDetailsRepository OrderDetailsRepository { get; }
+		
 		void Save();
 	}
 }

@@ -21,6 +21,8 @@
 		<th>Phone number</th>
 		<th>Company</th>
 		<th>Role</th>
+		<th>Lock/Unlock</th>
+		<th>Permission</th>
 		
 	</tr>
 	@foreach (var a in Model)
@@ -38,6 +40,17 @@
 				<td>@a.CompanyKey.Name</td>
 			}
 			<td>@a.UserRole</td>
+			@if (a.LockoutEnd != null)
+			{
+				<td><a asp-action="Unlock" asp-route-idd="@a.Id"><i class="bi bi-unlock"></i>Unlock</a></td>
+			}
+			else
+			{
+				<td><a asp-action="Lock" asp-route-idd="@a.Id"><i class="bi bi-lock"></i>Lock</a></td>
+				
+			}
+
+			<td><a asp-action="Permission" asp-route-idd="@a.Id">Permission</a></td>
 			
 				
 			</tr>
