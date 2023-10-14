@@ -40,7 +40,7 @@ namespace DemoMVC.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -92,7 +92,7 @@ namespace DemoMVC.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
 
                     b.HasData(
                         new
@@ -153,7 +153,7 @@ namespace DemoMVC.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("DemoMVC.Models.OrderHeader", b =>
@@ -229,7 +229,7 @@ namespace DemoMVC.Migrations
 
                     b.HasIndex("ApplicationUserID");
 
-                    b.ToTable("OrderHeaders");
+                    b.ToTable("OrderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("DemoMVC.Models.Product", b =>
@@ -278,7 +278,7 @@ namespace DemoMVC.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("DemoMVC.Models.ShoppingCart", b =>
@@ -308,7 +308,7 @@ namespace DemoMVC.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

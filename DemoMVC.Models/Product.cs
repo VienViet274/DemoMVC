@@ -38,6 +38,7 @@ namespace DemoMVC.Models
 		[ForeignKey(nameof(CategoryID))]
 		[ValidateNever]
 		public Category Category { get; set; }
+		public int TestProperty { get; set; }
 
 	}
 }

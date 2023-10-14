@@ -1,0 +1,10 @@
+﻿@model UserAndRoleListVM
+<p>User Email</p>
+<form method="post">
+	<input asp-for="applicationUser.Id" hidden />
+	<p>@Model.applicationUser.Email</p>
+	
+	<select asp-for="applicationUser.UserRole" asp-items="@Model.RoleList"  class="form-select"></select>
+	<select asp-for="applicationUser.CompanyID" asp-items="@Model.CompanyList" class="form-select"></select>
+	<input type="submit" value="Okay" />
+</form>
